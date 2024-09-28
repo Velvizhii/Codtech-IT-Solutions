@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+
+void fromCelsius(double temp) {
+    cout << "Fahrenheit: " << (temp * 9 / 5) + 32 << endl;
+    cout << "Kelvin: " << temp + 273.15 << endl;
+}
+
+void fromFahrenheit(double temp) {
+    cout << "Celsius: " << (temp - 32) * 5 / 9 << endl;
+    cout << "Kelvin: " << (temp - 32) * 5 / 9 + 273.15 << endl;
+}
+
+void fromKelvin(double temp) {
+    cout << "Celsius: " << temp - 273.15 << endl;
+    cout << "Fahrenheit: " << (temp - 273.15) * 9 / 5 + 32 << endl;
+}
+
+int main() {
+    double temperature;
+    int inputScale, outputScale;
+
+    cout << "Temperature Converter" << endl;
+    cout << "1. Celsius\n2. Fahrenheit\n3. Kelvin" << endl;
+
+    cout << "Enter the temperature scale (1 for Celsius, 2 for Fahrenheit, 3 for Kelvin): ";
+    cin >> inputScale;
+    cout << "Enter the temperature: ";
+    cin >> temperature;
+    cout << "Convert to (1 for Celsius, 2 for Fahrenheit, 3 for Kelvin): ";
+    cin >> outputScale;
+
+    if (inputScale == 1) { // Celsius input
+        if (outputScale == 2) fromCelsius(temperature);
+        else if (outputScale == 3) fromCelsius(temperature);
+        else cout << "Invalid output scale." << endl;
+    }
+    else if (inputScale == 2) { // Fahrenheit input
+        if (outputScale == 1) fromFahrenheit(temperature);
+        else if (outputScale == 3) fromFahrenheit(temperature);
+        else cout << "Invalid output scale." << endl;
+    }
+    else if (inputScale == 3) { // Kelvin input
+        if (outputScale == 1) fromKelvin(temperature);
+        else if (outputScale == 2) fromKelvin(temperature);
+        else cout << "Invalid output scale." << endl;
+    }
+    else {
+        cout << "Invalid input scale." << endl;
+    }
+
+    return 0;
+}
