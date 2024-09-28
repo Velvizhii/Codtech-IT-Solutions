@@ -1,0 +1,73 @@
+#include <iostream>
+#include <cstdlib>  
+#include <ctime>   
+
+using namespace std;
+
+string getComputerChoice() {
+    int randomChoice = rand() % 3;
+
+    if (randomChoice == 0)
+        return "Rock";
+    else if (randomChoice == 1)
+        return "Paper";
+    else
+        return "Scissors";
+}
+
+string getPlayerChoice() {
+    string choice;
+    cout << "Enter your choice (Rock, Paper, Scissors): ";
+    cin >> choice;
+    
+   
+    for (auto &c : choice) {
+        c = tolower(c);
+    }
+    
+
+    choice[0] = toupper(choice[0]);
+    
+    return choice;
+}
+
+string determineWinner(string playerChoice, string computerChoice) {
+    if (playerChoice == computerChoice) {
+        return "It's a tie!";
+    } else if ((playerChoice == "Rock" && computerChoice == "Scissors") ||
+               (playerChoice == "Paper" && computerChoice == "Rock") ||
+               (playerChoice == "Scissors" && computerChoice == "Paper")) {
+        return "You win!";
+    } else {
+        return "Computer wins!";
+    }
+}
+
+void playGame() {
+    string playerChoice, computerChoice;
+    
+    playerChoice = getPlayerChoice();
+    computerChoice = getComputerChoice();
+    cout << "You chose: " << playerChoice << endl;
+    cout << "Computer chose: " << computerChoice << endl;
+
+    cout << determineWinner(playerChoice, computerChoice) << endl;
+}
+
+int main() {
+    srand(time(0)); 
+    char playAgain;
+
+    do {
+        playGame();
+
+        cout << "Do you want to play again? (y/n): ";
+        cin >> playAgain;
+        cout << endl;
+
+    } while (playAgain == 'y' || playAgain == 'Y');
+
+    cout << "Thanks for playing! Goodbye!" << endl;
+
+    return 0;
+}
